@@ -1,0 +1,6 @@
+{
+  "name": "Agent Orchestration Dashboard",
+  "description": "Dashboard for managing multi-agent workflows, skills, and knowledge bases.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
