@@ -1,0 +1,103 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ai-platform-server
+
+  # ===== 多数据源 (达梦 + Doris) =====
+  datasource:
+    dynamic:
+      primary: dm
+      strict: true
+      datasource:
+        dm:
+          url: jdbc:dm://localhost:5236/AI_PLATFORM?schema=AI_PLATFORM
+          username: ${DM_USERNAME:SYSDBA}
+          password: ${DM_PASSWORD:SYSDBA}
+          driver-class-name: com.dameng.DmDriver
+        doris:
+          url: jdbc:mysql://${DORIS_HOST:localhost}:${DORIS_PORT:9030}/ai_platform_analytics?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+          username: ${DORIS_USERNAME:root}
+          password: ${DORIS_PASSWORD:}
+          driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # ===== Redis =====
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      database: 0
+      lettuce:
+        pool:
+          max-active: 64
+          max-idle: 24
+          min-idle: 8
+          max-wait: 3000ms
+
+  # ===== Spring AI Alibaba =====
+  ai:
+    alibaba:
+      api-key: ${AI_DASHSCOPE_API_KEY:}
+      model: qwen-plus
+
+# ===== MyBatis-Plus =====
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: assign_id
+
+# ===== Redisson =====
+redis:
+  redisson:
+    address: redis://${REDIS_HOST:localhost}:${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
+    database: 0
+    connection-pool-size: 64
+    connection-minimum-idle-size: 24
+
+# ===== Nacos =====
+nacos:
+  server-addr: ${NACOS_ADDR:localhost:8848}
+  namespace: ${NACOS_NAMESPACE:public}
+  group: AI_PLATFORM
+
+# ===== LangChain4j =====
+langchain4j:
+  milvus:
+    host: ${MILVUS_HOST:localhost}
+    port: 19530
+  elasticsearch:
+    url: ${ES_URL:http://localhost:9200}
+
+# ===== Langfuse =====
+langfuse:
+  public-key: ${LANGFUSE_PUBLIC_KEY:}
+  secret-key: ${LANGFUSE_SECRET_KEY:}
+  base-url: ${LANGFUSE_BASE_URL:https://cloud.langfuse.com}
+  enabled: ${LANGFUSE_ENABLED:false}
+
+# ===== PF4J Plugin Framework =====
+pf4j:
+  plugins-dir: ${PF4J_PLUGINS_DIR:plugins}
+  auto-start: ${PF4J_AUTO_START:true}
+
+# ===== Actuator =====
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+logging:
+  level:
+    com.ai.platform: DEBUG

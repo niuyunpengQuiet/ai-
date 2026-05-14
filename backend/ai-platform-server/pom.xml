@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ai.platform</groupId>
+        <artifactId>ai-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ai-platform-server</artifactId>
+    <name>AI Platform Server</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ai.platform</groupId>
+            <artifactId>ai-platform-datasource</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ai.platform</groupId>
+            <artifactId>ai-platform-agent</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ai.platform</groupId>
+            <artifactId>ai-platform-rag</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ai.platform</groupId>
+            <artifactId>ai-platform-skill</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ai.platform</groupId>
+            <artifactId>ai-platform-chat</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ai.platform</groupId>
+            <artifactId>ai-platform-observability</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

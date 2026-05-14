@@ -1,5 +1,3 @@
-import { AlertCircle, Library, Box, GitMerge, LayoutDashboard, Settings, Terminal, Workflow, MessageSquare } from 'lucide-react';
-
 export const AGENTS = [
   { id: 'agt-law-01', name: '涉黄案件审判专家', role: 'Worker', model: 'gpt-4o', temperature: 0.1, maxSteps: 5, fallback: 'agt-router', skills: ['sk-ocr'], knowledge: ['kb-criminal-law'] },
   { id: 'agt-eco-02', name: '经济犯罪研判专家', role: 'Worker', model: 'o1-preview', temperature: 0.2, maxSteps: 15, fallback: 'agt-router', skills: ['sk-es-search', 'sk-mysql-query'], knowledge: ['kb-economic-crimes'] },
@@ -24,11 +22,19 @@ export const KNOWLEDGE_BASES = [
   { id: 'kb-digital-forensics', name: '电子取证操作规范与脱敏规则', vectorDb: 'Milvus', embeddingModel: 'bge-m3', docs: 1240, status: 'active' },
 ];
 
+// Animated icon names (used by AnimIcon component)
 export const NAVIGATION = [
-  { id: 'dashboard', name: '系统总览', icon: LayoutDashboard },
-  { id: 'architecture', name: '架构拓扑', icon: Workflow },
-  { id: 'agents', name: '智能体配置', icon: Terminal },
-  { id: 'skills', name: '插拔式技能库', icon: Box },
-  { id: 'knowledge', name: '知识库治理', icon: Library },
-  { id: 'chat', name: '交互调试工作台', icon: MessageSquare },
+  { id: 'dashboard', name: '系统总览', animIcon: 'dashboard' },
+  { id: 'architecture', name: '架构拓扑', animIcon: 'architecture' },
+  { id: 'agents', name: '智能体配置', animIcon: 'agent' },
+  { id: 'skills', name: '插拔式技能库', animIcon: 'skill' },
+  { id: 'knowledge', name: '知识库治理', animIcon: 'knowledge' },
+  { id: 'chat', name: '交互调试工作台', animIcon: 'chat' },
+];
+
+export const BRANDINGS = [
+  { id: 'ruijian', name: '睿鉴', mascot: '🦅', bgColor: 'bg-blue-100', text: 'text-blue-700', border: 'border-blue-200', desc: '深度审查与研判平台' },
+  { id: 'haidun', name: '海盾', mascot: '🛡️', bgColor: 'bg-emerald-100', text: 'text-emerald-700', border: 'border-emerald-200', desc: '公共案事件防护屏障' },
+  { id: 'zhishu', name: '智枢', mascot: '🐙', bgColor: 'bg-indigo-100', text: 'text-indigo-700', border: 'border-indigo-200', desc: '多智能体协同中枢' },
+  { id: 'ruitong', name: '睿瞳', mascot: '👁️', bgColor: 'bg-amber-100', text: 'text-amber-700', border: 'border-amber-200', desc: '全域数据取证天眼' }
 ];
